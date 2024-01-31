@@ -1,17 +1,17 @@
 import { ICompany, NewCompany } from './company.model';
 
 export const sampleWithRequiredData: ICompany = {
-  id: '93cc98fe-f2e0-46ec-8b97-8fca6547a32a',
+  id: '0319a5df-9d7e-4315-9ce1-53e3ab657a53',
 };
 
 export const sampleWithPartialData: ICompany = {
-  id: 'fda04e0d-c7bd-4c71-8cfe-72a071289310',
-  name: 'awkwardly',
+  id: '9cd88dba-98f2-4ae6-bc9f-a92e51931d08',
+  name: 'knowledgeably',
 };
 
 export const sampleWithFullData: ICompany = {
-  id: 'd837c82e-5475-41db-a00e-8bad0319a5df',
-  name: 'truant qua meh',
+  id: '07ac4327-7da6-4c9b-b548-c063d84d2025',
+  name: 'anti',
 };
 
 export const sampleWithNewData: NewCompany = {

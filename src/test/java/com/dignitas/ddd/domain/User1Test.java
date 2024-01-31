@@ -1,5 +1,6 @@
 package com.dignitas.ddd.domain;
 
+import static com.dignitas.ddd.domain.CompanyTestSamples.*;
 import static com.dignitas.ddd.domain.User1TestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,5 +21,17 @@ class User1Test {
 
         user12 = getUser1Sample2();
         assertThat(user11).isNotEqualTo(user12);
+    }
+
+    @Test
+    void companyTest() throws Exception {
+        User1 user1 = getUser1RandomSampleGenerator();
+        Company companyBack = getCompanyRandomSampleGenerator();
+
+        user1.setCompany(companyBack);
+        assertThat(user1.getCompany()).isEqualTo(companyBack);
+
+        user1.company(null);
+        assertThat(user1.getCompany()).isNull();
     }
 }

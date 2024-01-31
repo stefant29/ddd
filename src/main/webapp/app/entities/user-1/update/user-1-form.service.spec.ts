@@ -23,6 +23,7 @@ describe('User1 Form Service', () => {
             nume: expect.any(Object),
             prenume: expect.any(Object),
             cnp: expect.any(Object),
+            company: expect.any(Object),
           }),
         );
       });
@@ -36,6 +37,7 @@ describe('User1 Form Service', () => {
             nume: expect.any(Object),
             prenume: expect.any(Object),
             cnp: expect.any(Object),
+            company: expect.any(Object),
           }),
         );
       });
