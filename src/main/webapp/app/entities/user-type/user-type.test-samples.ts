@@ -1,17 +1,16 @@
 import { IUserType, NewUserType } from './user-type.model';
 
 export const sampleWithRequiredData: IUserType = {
-  id: '17891c8d-04c8-4133-8007-085f241429f5',
+  id: '7cac9dbf-1ee1-4786-bfd7-485c7885ee01',
 };
 
 export const sampleWithPartialData: IUserType = {
-  id: 'f09b2f26-a89f-4df3-a066-43e840a22487',
-  type: 'succumb',
+  id: '3110e9dd-7dcd-4726-bcc9-2e84317dc19c',
 };
 
 export const sampleWithFullData: IUserType = {
-  id: 'a8465e93-9197-4020-bf5b-43eebc0786c6',
-  type: 'round when times',
+  id: '4feb7699-ad7f-4afd-8db4-2c1b9cd05f31',
+  type: 'apparatus blindly',
 };
 
 export const sampleWithNewData: NewUserType = {

@@ -18,8 +18,7 @@
         "title": "User Type"
       },
       "id": "Id",
-      "type": "Type",
-      "user": "User"
+      "type": "Type"
     }
   }
 }

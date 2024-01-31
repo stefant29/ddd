@@ -15,13 +15,6 @@
     }
   ],
   "name": "UserType",
-  "relationships": [
-    {
-      "otherEntityName": "user1",
-      "relationshipName": "user",
-      "relationshipSide": "right",
-      "relationshipType": "one-to-many"
-    }
-  ],
+  "relationships": [],
   "searchEngine": "no"
 }

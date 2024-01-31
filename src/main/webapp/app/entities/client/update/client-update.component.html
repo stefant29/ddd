@@ -19,23 +19,6 @@
           <label class="form-label" jhiTranslate="dddApp.client.name" for="field_name">Name</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" jhiTranslate="dddApp.client.company" for="field_company">Company</label>
-          <select
-            class="form-control"
-            id="field_company"
-            data-cy="company"
-            name="company"
-            formControlName="company"
-            [compareWith]="compareCompany"
-          >
-            <option [ngValue]="null"></option>
-            @for (companyOption of companiesSharedCollection; track $index) {
-              <option [ngValue]="companyOption">{{ companyOption.id }}</option>
-            }
-          </select>
-        </div>
       </div>
 
       <div>

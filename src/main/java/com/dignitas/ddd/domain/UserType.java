@@ -1,10 +1,7 @@
 package com.dignitas.ddd.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -26,11 +23,6 @@ public class UserType implements Serializable {
 
     @Column(name = "type")
     private String type;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userType")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "userType", "company" }, allowSetters = true)
-    private Set<User1> users = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -58,37 +50,6 @@ public class UserType implements Serializable {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Set<User1> getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(Set<User1> user1s) {
-        if (this.users != null) {
-            this.users.forEach(i -> i.setUserType(null));
-        }
-        if (user1s != null) {
-            user1s.forEach(i -> i.setUserType(this));
-        }
-        this.users = user1s;
-    }
-
-    public UserType users(Set<User1> user1s) {
-        this.setUsers(user1s);
-        return this;
-    }
-
-    public UserType addUser(User1 user1) {
-        this.users.add(user1);
-        user1.setUserType(this);
-        return this;
-    }
-
-    public UserType removeUser(User1 user1) {
-        this.users.remove(user1);
-        user1.setUserType(null);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

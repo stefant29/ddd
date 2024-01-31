@@ -18,8 +18,7 @@
         "title": "Client"
       },
       "id": "Id",
-      "name": "Name",
-      "company": "Company"
+      "name": "Name"
     }
   }
 }

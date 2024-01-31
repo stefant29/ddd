@@ -27,22 +27,6 @@
           <dd>
             <span>{{ user1.cnp }}</span>
           </dd>
-          <dt><span jhiTranslate="dddApp.user1.userType">User Type</span></dt>
-          <dd>
-            @if (user1.userType) {
-              <div>
-                <a [routerLink]="['/user-type', user1.userType.id, 'view']">{{ user1.userType.id }}</a>
-              </div>
-            }
-          </dd>
-          <dt><span jhiTranslate="dddApp.user1.company">Company</span></dt>
-          <dd>
-            @if (user1.company) {
-              <div>
-                <a [routerLink]="['/company', user1.company.id, 'view']">{{ user1.company.id }}</a>
-              </div>
-            }
-          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

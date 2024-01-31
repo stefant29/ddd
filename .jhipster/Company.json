@@ -15,19 +15,6 @@
     }
   ],
   "name": "Company",
-  "relationships": [
-    {
-      "otherEntityName": "user1",
-      "relationshipName": "user",
-      "relationshipSide": "right",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "client",
-      "relationshipName": "client",
-      "relationshipSide": "right",
-      "relationshipType": "one-to-many"
-    }
-  ],
+  "relationships": [],
   "searchEngine": "no"
 }

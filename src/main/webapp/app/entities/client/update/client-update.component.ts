@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ICompany } from 'app/entities/company/company.model';
-import { CompanyService } from 'app/entities/company/service/company.service';
 import { IClient } from '../client.model';
 import { ClientService } from '../service/client.service';
 import { ClientFormService, ClientFormGroup } from './client-form.service';
@@ -23,18 +21,13 @@ export class ClientUpdateComponent implements OnInit {
   isSaving = false;
   client: IClient | null = null;
 
-  companiesSharedCollection: ICompany[] = [];
-
   editForm: ClientFormGroup = this.clientFormService.createClientFormGroup();
 
   constructor(
     protected clientService: ClientService,
     protected clientFormService: ClientFormService,
-    protected companyService: CompanyService,
     protected activatedRoute: ActivatedRoute,
   ) {}
-
-  compareCompany = (o1: ICompany | null, o2: ICompany | null): boolean => this.companyService.compareCompany(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ client }) => {
@@ -42,8 +35,6 @@ export class ClientUpdateComponent implements OnInit {
       if (client) {
         this.updateForm(client);
       }
-
-      this.loadRelationshipsOptions();
     });
   }
 
@@ -83,18 +74,5 @@ export class ClientUpdateComponent implements OnInit {
   protected updateForm(client: IClient): void {
     this.client = client;
     this.clientFormService.resetForm(this.editForm, client);
-
-    this.companiesSharedCollection = this.companyService.addCompanyToCollectionIfMissing<ICompany>(
-      this.companiesSharedCollection,
-      client.company,
-    );
-  }
-
-  protected loadRelationshipsOptions(): void {
-    this.companyService
-      .query()
-      .pipe(map((res: HttpResponse<ICompany[]>) => res.body ?? []))
-      .pipe(map((companies: ICompany[]) => this.companyService.addCompanyToCollectionIfMissing<ICompany>(companies, this.client?.company)))
-      .subscribe((companies: ICompany[]) => (this.companiesSharedCollection = companies));
   }
 }

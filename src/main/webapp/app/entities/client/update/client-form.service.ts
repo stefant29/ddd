@@ -19,7 +19,6 @@ type ClientFormDefaults = Pick<NewClient, 'id'>;
 type ClientFormGroupContent = {
   id: FormControl<IClient['id'] | NewClient['id']>;
   name: FormControl<IClient['name']>;
-  company: FormControl<IClient['company']>;
 };
 
 export type ClientFormGroup = FormGroup<ClientFormGroupContent>;
@@ -40,7 +39,6 @@ export class ClientFormService {
         },
       ),
       name: new FormControl(clientRawValue.name),
-      company: new FormControl(clientRawValue.company),
     });
   }
 
