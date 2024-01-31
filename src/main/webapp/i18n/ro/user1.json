@@ -1,0 +1,28 @@
+{
+  "dddApp": {
+    "user1": {
+      "home": {
+        "title": "User 1 S",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate User 1",
+        "createOrEditLabel": "Creeare sau editare User 1",
+        "notFound": "No User 1 S found"
+      },
+      "created": "A fost creată o nouă entitate User 1 cu identificatorul {{ param }}",
+      "updated": "User 1 cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "User 1 cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți User 1 {{ id }}?"
+      },
+      "detail": {
+        "title": "User 1"
+      },
+      "id": "Id",
+      "nume": "Nume",
+      "prenume": "Prenume",
+      "cnp": "Cnp",
+      "type": "Type",
+      "company": "Company"
+    }
+  }
+}
