@@ -54,6 +54,9 @@ public class CacheConfiguration {
             createCache(cm, com.dignitas.ddd.domain.UserType.class.getName());
             createCache(cm, com.dignitas.ddd.domain.Company.class.getName());
             createCache(cm, com.dignitas.ddd.domain.Client.class.getName());
+            createCache(cm, com.dignitas.ddd.domain.UserType.class.getName() + ".users");
+            createCache(cm, com.dignitas.ddd.domain.Company.class.getName() + ".users");
+            createCache(cm, com.dignitas.ddd.domain.Company.class.getName() + ".clients");
             // jhipster-needle-ehcache-add-entry
         };
     }

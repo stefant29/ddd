@@ -18,7 +18,8 @@
         "title": "Client"
       },
       "id": "Id",
-      "name": "Name"
+      "name": "Name",
+      "company": "Company"
     }
   }
 }

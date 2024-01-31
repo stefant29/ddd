@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,11 +8,14 @@ import SharedModule from 'app/shared/shared.module';
 import { SortDirective, SortByDirective } from 'app/shared/sort';
 import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'app/shared/date';
 import { FormsModule } from '@angular/forms';
+
+import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
-import { SortService } from 'app/shared/sort/sort.service';
-import { IUser1 } from '../user-1.model';
+import { ParseLinks } from 'app/core/util/parse-links.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { EntityArrayResponseType, User1Service } from '../service/user-1.service';
 import { User1DeleteDialogComponent } from '../delete/user-1-delete-dialog.component';
+import { IUser1 } from '../user-1.model';
 
 @Component({
   standalone: true,
@@ -26,6 +30,7 @@ import { User1DeleteDialogComponent } from '../delete/user-1-delete-dialog.compo
     DurationPipe,
     FormatMediumDatetimePipe,
     FormatMediumDatePipe,
+    InfiniteScrollModule,
   ],
 })
 export class User1Component implements OnInit {
@@ -35,13 +40,30 @@ export class User1Component implements OnInit {
   predicate = 'id';
   ascending = true;
 
+  itemsPerPage = ITEMS_PER_PAGE;
+  links: { [key: string]: number } = {
+    last: 0,
+  };
+  page = 1;
+
   constructor(
     protected user1Service: User1Service,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
-    protected sortService: SortService,
+    protected parseLinks: ParseLinks,
     protected modalService: NgbModal,
   ) {}
+
+  reset(): void {
+    this.page = 1;
+    this.user1s = [];
+    this.load();
+  }
+
+  loadPage(page: number): void {
+    this.page = page;
+    this.load();
+  }
 
   trackId = (_index: number, item: IUser1): string => this.user1Service.getUser1Identifier(item);
 
@@ -74,13 +96,17 @@ export class User1Component implements OnInit {
   }
 
   navigateToWithComponentValues(): void {
-    this.handleNavigation(this.predicate, this.ascending);
+    this.handleNavigation(this.page, this.predicate, this.ascending);
+  }
+
+  navigateToPage(page = this.page): void {
+    this.handleNavigation(page, this.predicate, this.ascending);
   }
 
   protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
     return combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data]).pipe(
       tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-      switchMap(() => this.queryBackend(this.predicate, this.ascending)),
+      switchMap(() => this.queryBackend(this.page, this.predicate, this.ascending)),
     );
   }
 
@@ -91,28 +117,53 @@ export class User1Component implements OnInit {
   }
 
   protected onResponseSuccess(response: EntityArrayResponseType): void {
+    this.fillComponentAttributesFromResponseHeader(response.headers);
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
-    this.user1s = this.refineData(dataFromBody);
-  }
-
-  protected refineData(data: IUser1[]): IUser1[] {
-    return data.sort(this.sortService.startSort(this.predicate, this.ascending ? 1 : -1));
+    this.user1s = dataFromBody;
   }
 
   protected fillComponentAttributesFromResponseBody(data: IUser1[] | null): IUser1[] {
+    // If there is previous link, data is a infinite scroll pagination content.
+    if ('prev' in this.links) {
+      const user1sNew = this.user1s ?? [];
+      if (data) {
+        for (const d of data) {
+          if (user1sNew.map(op => op.id).indexOf(d.id) === -1) {
+            user1sNew.push(d);
+          }
+        }
+      }
+      return user1sNew;
+    }
     return data ?? [];
   }
 
-  protected queryBackend(predicate?: string, ascending?: boolean): Observable<EntityArrayResponseType> {
+  protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
+    const linkHeader = headers.get('link');
+    if (linkHeader) {
+      this.links = this.parseLinks.parse(linkHeader);
+    } else {
+      this.links = {
+        last: 0,
+      };
+    }
+  }
+
+  protected queryBackend(page?: number, predicate?: string, ascending?: boolean): Observable<EntityArrayResponseType> {
     this.isLoading = true;
+    const pageToLoad: number = page ?? 1;
     const queryObject: any = {
+      page: pageToLoad - 1,
+      size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
     };
     return this.user1Service.query(queryObject).pipe(tap(() => (this.isLoading = false)));
   }
 
-  protected handleNavigation(predicate?: string, ascending?: boolean): void {
+  protected handleNavigation(page = this.page, predicate?: string, ascending?: boolean): void {
     const queryParamsObj = {
+      page,
+      size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
     };
 

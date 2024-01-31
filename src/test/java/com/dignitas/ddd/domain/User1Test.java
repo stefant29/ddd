@@ -6,8 +6,6 @@ import static com.dignitas.ddd.domain.UserTypeTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.dignitas.ddd.web.rest.TestUtil;
-import java.util.HashSet;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class User1Test {
@@ -27,25 +25,15 @@ class User1Test {
     }
 
     @Test
-    void typeTest() throws Exception {
+    void userTypeTest() throws Exception {
         User1 user1 = getUser1RandomSampleGenerator();
         UserType userTypeBack = getUserTypeRandomSampleGenerator();
 
-        user1.addType(userTypeBack);
-        assertThat(user1.getTypes()).containsOnly(userTypeBack);
-        assertThat(userTypeBack.getUser1()).isEqualTo(user1);
+        user1.setUserType(userTypeBack);
+        assertThat(user1.getUserType()).isEqualTo(userTypeBack);
 
-        user1.removeType(userTypeBack);
-        assertThat(user1.getTypes()).doesNotContain(userTypeBack);
-        assertThat(userTypeBack.getUser1()).isNull();
-
-        user1.types(new HashSet<>(Set.of(userTypeBack)));
-        assertThat(user1.getTypes()).containsOnly(userTypeBack);
-        assertThat(userTypeBack.getUser1()).isEqualTo(user1);
-
-        user1.setTypes(new HashSet<>());
-        assertThat(user1.getTypes()).doesNotContain(userTypeBack);
-        assertThat(userTypeBack.getUser1()).isNull();
+        user1.userType(null);
+        assertThat(user1.getUserType()).isNull();
     }
 
     @Test
@@ -53,20 +41,10 @@ class User1Test {
         User1 user1 = getUser1RandomSampleGenerator();
         Company companyBack = getCompanyRandomSampleGenerator();
 
-        user1.addCompany(companyBack);
-        assertThat(user1.getCompanies()).containsOnly(companyBack);
-        assertThat(companyBack.getUser1()).isEqualTo(user1);
+        user1.setCompany(companyBack);
+        assertThat(user1.getCompany()).isEqualTo(companyBack);
 
-        user1.removeCompany(companyBack);
-        assertThat(user1.getCompanies()).doesNotContain(companyBack);
-        assertThat(companyBack.getUser1()).isNull();
-
-        user1.companies(new HashSet<>(Set.of(companyBack)));
-        assertThat(user1.getCompanies()).containsOnly(companyBack);
-        assertThat(companyBack.getUser1()).isEqualTo(user1);
-
-        user1.setCompanies(new HashSet<>());
-        assertThat(user1.getCompanies()).doesNotContain(companyBack);
-        assertThat(companyBack.getUser1()).isNull();
+        user1.company(null);
+        assertThat(user1.getCompany()).isNull();
     }
 }
