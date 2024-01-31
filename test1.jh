@@ -1,4 +1,4 @@
-entity User1 {
+entity User {
 	id String
     nume String
     prenume String
@@ -21,7 +21,21 @@ entity Client {
 }
 
 relationship OneToMany {
-	Company to User1
+	Company to User
+}
+
+entity A {
+	id String
+    name String
+}
+
+entity B {
+	id String
+    name String
+}
+
+relationship ManyToMany {
+	A to B
 }
 
 // Set pagination options
