@@ -15,7 +15,7 @@
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
-    "entities": ["Client", "User1", "UserType", "Company"],
+    "entities": ["A", "Client", "User1", "B", "UserType", "Company"],
     "gitCompany": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "8.1.0",
