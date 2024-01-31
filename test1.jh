@@ -15,20 +15,21 @@ entity Company {
     name String
 }
 
-relationship ManyToOne {
-	UserType to User1{type}
-    Company to User1{company}
-}
-
 entity Client {
 	id String
     name String
 }
 
+relationship ManyToOne {
+	User1 to UserType{user}
+    User1 to Company{user}
+    Client to Company{client}
+}
+
 
 // Set pagination options
-// paginate User with infinite-scroll
-// paginate Job with pagination
+paginate User with infinite-scroll
+paginate Client with pagination
 
 // Use Data Transfer Objects (DTO)
 // dto * with mapstruct
