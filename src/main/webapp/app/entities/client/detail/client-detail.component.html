@@ -19,14 +19,6 @@
           <dd>
             <span>{{ client.name }}</span>
           </dd>
-          <dt><span jhiTranslate="dddApp.client.company">Company</span></dt>
-          <dd>
-            @if (client.company) {
-              <div>
-                <a [routerLink]="['/company', client.company.id, 'view']">{{ client.company.id }}</a>
-              </div>
-            }
-          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -20,9 +20,7 @@
       "id": "Id",
       "nume": "Nume",
       "prenume": "Prenume",
-      "cnp": "Cnp",
-      "userType": "User Type",
-      "company": "Company"
+      "cnp": "Cnp"
     }
   }
 }

@@ -23,22 +23,6 @@
     }
   ],
   "name": "User1",
-  "pagination": "infinite-scroll",
-  "relationships": [
-    {
-      "otherEntityName": "userType",
-      "otherEntityRelationshipName": "user",
-      "relationshipName": "userType",
-      "relationshipSide": "left",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "company",
-      "otherEntityRelationshipName": "user",
-      "relationshipName": "company",
-      "relationshipSide": "left",
-      "relationshipType": "many-to-one"
-    }
-  ],
+  "relationships": [],
   "searchEngine": "no"
 }

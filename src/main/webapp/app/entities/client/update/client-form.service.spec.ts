@@ -21,7 +21,6 @@ describe('Client Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             name: expect.any(Object),
-            company: expect.any(Object),
           }),
         );
       });
@@ -33,7 +32,6 @@ describe('Client Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             name: expect.any(Object),
-            company: expect.any(Object),
           }),
         );
       });
