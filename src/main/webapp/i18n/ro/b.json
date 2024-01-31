@@ -1,0 +1,25 @@
+{
+  "dddApp": {
+    "b": {
+      "home": {
+        "title": "BS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate B",
+        "createOrEditLabel": "Creeare sau editare B",
+        "notFound": "No BS found"
+      },
+      "created": "A fost creată o nouă entitate B cu identificatorul {{ param }}",
+      "updated": "B cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "B cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți B {{ id }}?"
+      },
+      "detail": {
+        "title": "B"
+      },
+      "id": "Id",
+      "name": "Name",
+      "a": "A"
+    }
+  }
+}
