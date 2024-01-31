@@ -20,6 +20,9 @@ entity Client {
     name String
 }
 
+relationship OneToMany {
+	User1 to Company
+}
 
 // Set pagination options
 // paginate User1 with infinite-scroll
