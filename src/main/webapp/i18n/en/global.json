@@ -8,6 +8,7 @@
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "client": "Client",
         "user1": "User 1",
         "userType": "User Type",
         "company": "Company"

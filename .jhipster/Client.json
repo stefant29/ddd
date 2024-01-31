@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20240131124424"
+  },
+  "applications": "*",
+  "entityTableName": "client",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Client",
+  "relationships": [],
+  "searchEngine": "no"
+}

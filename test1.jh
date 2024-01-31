@@ -20,6 +20,10 @@ relationship ManyToOne {
     Company to User1{company}
 }
 
+entity Client {
+	id String
+    name String
+}
 
 
 // Set pagination options
