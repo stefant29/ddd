@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240131124424"
+  },
+  "applications": "*",
+  "entityTableName": "user_1",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nume",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenume",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cnp",
+      "fieldType": "String"
+    }
+  ],
+  "name": "User1",
+  "relationships": [
+    {
+      "otherEntityName": "userType",
+      "relationshipName": "type",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "company",
+      "relationshipName": "company",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

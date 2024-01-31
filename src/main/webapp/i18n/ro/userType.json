@@ -1,0 +1,25 @@
+{
+  "dddApp": {
+    "userType": {
+      "home": {
+        "title": "User Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate User Type",
+        "createOrEditLabel": "Creeare sau editare User Type",
+        "notFound": "No User Types found"
+      },
+      "created": "A fost creată o nouă entitate User Type cu identificatorul {{ param }}",
+      "updated": "User Type cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "User Type cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți User Type {{ id }}?"
+      },
+      "detail": {
+        "title": "User Type"
+      },
+      "id": "Id",
+      "type": "Type",
+      "user1": "User 1"
+    }
+  }
+}

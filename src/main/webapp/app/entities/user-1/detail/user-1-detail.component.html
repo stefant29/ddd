@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (user1) {
+      <div>
+        <h2 data-cy="user1DetailsHeading"><span jhiTranslate="dddApp.user1.detail.title">User 1</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="dddApp.user1.id">Id</span></dt>
+          <dd>
+            <span>{{ user1.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="dddApp.user1.nume">Nume</span></dt>
+          <dd>
+            <span>{{ user1.nume }}</span>
+          </dd>
+          <dt><span jhiTranslate="dddApp.user1.prenume">Prenume</span></dt>
+          <dd>
+            <span>{{ user1.prenume }}</span>
+          </dd>
+          <dt><span jhiTranslate="dddApp.user1.cnp">Cnp</span></dt>
+          <dd>
+            <span>{{ user1.cnp }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/user-1', user1.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

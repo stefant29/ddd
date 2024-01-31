@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (company) {
+      <div>
+        <h2 data-cy="companyDetailsHeading"><span jhiTranslate="dddApp.company.detail.title">Company</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="dddApp.company.id">Id</span></dt>
+          <dd>
+            <span>{{ company.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="dddApp.company.name">Name</span></dt>
+          <dd>
+            <span>{{ company.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="dddApp.company.user1">User 1</span></dt>
+          <dd>
+            @if (company.user1) {
+              <div>
+                <a [routerLink]="['/user-1', company.user1.id, 'view']">{{ company.user1.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/company', company.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
