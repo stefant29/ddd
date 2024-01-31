@@ -22,10 +22,15 @@ entity Client {
 
 relationship ManyToOne {
 	User1 to UserType{user}
-    User1 to Company{user}
-    Client to Company{client}
 }
 
+relationship ManyToOne {
+    User1 to Company{user}
+}
+
+relationship ManyToOne {
+    Client to Company{client}
+}
 
 // Set pagination options
 paginate User1 with infinite-scroll
