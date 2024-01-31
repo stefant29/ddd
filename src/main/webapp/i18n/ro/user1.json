@@ -20,7 +20,8 @@
       "id": "Id",
       "nume": "Nume",
       "prenume": "Prenume",
-      "cnp": "Cnp"
+      "cnp": "Cnp",
+      "company": "Company"
     }
   }
 }

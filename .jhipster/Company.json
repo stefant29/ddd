@@ -15,6 +15,14 @@
     }
   ],
   "name": "Company",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "user1",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "user1",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "searchEngine": "no"
 }

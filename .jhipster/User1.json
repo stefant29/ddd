@@ -23,6 +23,14 @@
     }
   ],
   "name": "User1",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "user1",
+      "relationshipName": "company",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "searchEngine": "no"
 }
