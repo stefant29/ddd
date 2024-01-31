@@ -21,7 +21,7 @@
       "nume": "Nume",
       "prenume": "Prenume",
       "cnp": "Cnp",
-      "type": "Type",
+      "userType": "User Type",
       "company": "Company"
     }
   }

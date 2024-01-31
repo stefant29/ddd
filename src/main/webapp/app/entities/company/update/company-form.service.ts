@@ -19,7 +19,6 @@ type CompanyFormDefaults = Pick<NewCompany, 'id'>;
 type CompanyFormGroupContent = {
   id: FormControl<ICompany['id'] | NewCompany['id']>;
   name: FormControl<ICompany['name']>;
-  user1: FormControl<ICompany['user1']>;
 };
 
 export type CompanyFormGroup = FormGroup<CompanyFormGroupContent>;
@@ -40,7 +39,6 @@ export class CompanyFormService {
         },
       ),
       name: new FormControl(companyRawValue.name),
-      user1: new FormControl(companyRawValue.user1),
     });
   }
 

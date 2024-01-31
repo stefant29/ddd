@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject, from } from 'rxjs';
 
+import { ICompany } from 'app/entities/company/company.model';
+import { CompanyService } from 'app/entities/company/service/company.service';
 import { ClientService } from '../service/client.service';
 import { IClient } from '../client.model';
 import { ClientFormService } from './client-form.service';
@@ -18,6 +20,7 @@ describe('Client Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let clientFormService: ClientFormService;
   let clientService: ClientService;
+  let companyService: CompanyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,17 +42,43 @@ describe('Client Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     clientFormService = TestBed.inject(ClientFormService);
     clientService = TestBed.inject(ClientService);
+    companyService = TestBed.inject(CompanyService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Company query and add missing value', () => {
       const client: IClient = { id: 'CBA' };
+      const company: ICompany = { id: '93cc98fe-f2e0-46ec-8b97-8fca6547a32a' };
+      client.company = company;
+
+      const companyCollection: ICompany[] = [{ id: '5fda04e0-dc7b-4dc7-81cf-e72a07128931' }];
+      jest.spyOn(companyService, 'query').mockReturnValue(of(new HttpResponse({ body: companyCollection })));
+      const additionalCompanies = [company];
+      const expectedCollection: ICompany[] = [...additionalCompanies, ...companyCollection];
+      jest.spyOn(companyService, 'addCompanyToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ client });
       comp.ngOnInit();
 
+      expect(companyService.query).toHaveBeenCalled();
+      expect(companyService.addCompanyToCollectionIfMissing).toHaveBeenCalledWith(
+        companyCollection,
+        ...additionalCompanies.map(expect.objectContaining),
+      );
+      expect(comp.companiesSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const client: IClient = { id: 'CBA' };
+      const company: ICompany = { id: '02d13854-0d83-47c8-b2e5-4751db00e8ba' };
+      client.company = company;
+
+      activatedRoute.data = of({ client });
+      comp.ngOnInit();
+
+      expect(comp.companiesSharedCollection).toContain(company);
       expect(comp.client).toEqual(client);
     });
   });
@@ -119,6 +148,18 @@ describe('Client Management Update Component', () => {
       expect(clientService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareCompany', () => {
+      it('Should forward to companyService', () => {
+        const entity = { id: 'ABC' };
+        const entity2 = { id: 'CBA' };
+        jest.spyOn(companyService, 'compareCompany');
+        comp.compareCompany(entity, entity2);
+        expect(companyService.compareCompany).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

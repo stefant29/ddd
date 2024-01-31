@@ -49,12 +49,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="user1.id">
-              <div class="d-flex">
-                <span jhiTranslate="dddApp.userType.user1">User 1</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -65,13 +59,6 @@
                 <a [routerLink]="['/user-type', userType.id, 'view']">{{ userType.id }}</a>
               </td>
               <td>{{ userType.type }}</td>
-              <td>
-                @if (userType.user1) {
-                  <div>
-                    <a [routerLink]="['/user-1', userType.user1.id, 'view']">{{ userType.user1.id }}</a>
-                  </div>
-                }
-              </td>
               <td class="text-end">
                 <div class="btn-group">
                   <a [routerLink]="['/user-type', userType.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

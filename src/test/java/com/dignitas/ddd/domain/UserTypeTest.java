@@ -5,6 +5,8 @@ import static com.dignitas.ddd.domain.UserTypeTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.dignitas.ddd.web.rest.TestUtil;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class UserTypeTest {
@@ -24,14 +26,24 @@ class UserTypeTest {
     }
 
     @Test
-    void user1Test() throws Exception {
+    void userTest() throws Exception {
         UserType userType = getUserTypeRandomSampleGenerator();
         User1 user1Back = getUser1RandomSampleGenerator();
 
-        userType.setUser1(user1Back);
-        assertThat(userType.getUser1()).isEqualTo(user1Back);
+        userType.addUser(user1Back);
+        assertThat(userType.getUsers()).containsOnly(user1Back);
+        assertThat(user1Back.getUserType()).isEqualTo(userType);
 
-        userType.user1(null);
-        assertThat(userType.getUser1()).isNull();
+        userType.removeUser(user1Back);
+        assertThat(userType.getUsers()).doesNotContain(user1Back);
+        assertThat(user1Back.getUserType()).isNull();
+
+        userType.users(new HashSet<>(Set.of(user1Back)));
+        assertThat(userType.getUsers()).containsOnly(user1Back);
+        assertThat(user1Back.getUserType()).isEqualTo(userType);
+
+        userType.setUsers(new HashSet<>());
+        assertThat(userType.getUsers()).doesNotContain(user1Back);
+        assertThat(user1Back.getUserType()).isNull();
     }
 }

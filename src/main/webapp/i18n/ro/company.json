@@ -19,7 +19,8 @@
       },
       "id": "Id",
       "name": "Name",
-      "user1": "User 1"
+      "user": "User",
+      "client": "Client"
     }
   }
 }

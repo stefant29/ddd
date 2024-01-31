@@ -6,8 +6,8 @@ export interface IUser1 {
   nume?: string | null;
   prenume?: string | null;
   cnp?: string | null;
-  types?: IUserType[] | null;
-  companies?: ICompany[] | null;
+  userType?: IUserType | null;
+  company?: ICompany | null;
 }
 
 export type NewUser1 = Omit<IUser1, 'id'> & { id: null };

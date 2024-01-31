@@ -21,6 +21,8 @@ type User1FormGroupContent = {
   nume: FormControl<IUser1['nume']>;
   prenume: FormControl<IUser1['prenume']>;
   cnp: FormControl<IUser1['cnp']>;
+  userType: FormControl<IUser1['userType']>;
+  company: FormControl<IUser1['company']>;
 };
 
 export type User1FormGroup = FormGroup<User1FormGroupContent>;
@@ -43,6 +45,8 @@ export class User1FormService {
       nume: new FormControl(user1RawValue.nume),
       prenume: new FormControl(user1RawValue.prenume),
       cnp: new FormControl(user1RawValue.cnp),
+      userType: new FormControl(user1RawValue.userType),
+      company: new FormControl(user1RawValue.company),
     });
   }
 

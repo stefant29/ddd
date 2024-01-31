@@ -21,7 +21,6 @@ describe('UserType Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             type: expect.any(Object),
-            user1: expect.any(Object),
           }),
         );
       });
@@ -33,7 +32,6 @@ describe('UserType Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             type: expect.any(Object),
-            user1: expect.any(Object),
           }),
         );
       });

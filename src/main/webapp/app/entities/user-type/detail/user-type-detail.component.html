@@ -19,14 +19,6 @@
           <dd>
             <span>{{ userType.type }}</span>
           </dd>
-          <dt><span jhiTranslate="dddApp.userType.user1">User 1</span></dt>
-          <dd>
-            @if (userType.user1) {
-              <div>
-                <a [routerLink]="['/user-1', userType.user1.id, 'view']">{{ userType.user1.id }}</a>
-              </div>
-            }
-          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

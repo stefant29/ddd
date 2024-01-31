@@ -19,7 +19,6 @@ type UserTypeFormDefaults = Pick<NewUserType, 'id'>;
 type UserTypeFormGroupContent = {
   id: FormControl<IUserType['id'] | NewUserType['id']>;
   type: FormControl<IUserType['type']>;
-  user1: FormControl<IUserType['user1']>;
 };
 
 export type UserTypeFormGroup = FormGroup<UserTypeFormGroupContent>;
@@ -40,7 +39,6 @@ export class UserTypeFormService {
         },
       ),
       type: new FormControl(userTypeRawValue.type),
-      user1: new FormControl(userTypeRawValue.user1),
     });
   }
 

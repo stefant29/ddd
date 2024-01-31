@@ -63,10 +63,27 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="userType.id">
+              <div class="d-flex">
+                <span jhiTranslate="dddApp.user1.userType">User Type</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="company.id">
+              <div class="d-flex">
+                <span jhiTranslate="dddApp.user1.company">Company</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody
+          infinite-scroll
+          (scrolled)="loadPage(page + 1)"
+          [infiniteScrollDisabled]="page - 1 >= links['last']"
+          [infiniteScrollDistance]="0"
+        >
           @for (user1 of user1s; track trackId) {
             <tr data-cy="entityTable">
               <td>
@@ -75,6 +92,20 @@
               <td>{{ user1.nume }}</td>
               <td>{{ user1.prenume }}</td>
               <td>{{ user1.cnp }}</td>
+              <td>
+                @if (user1.userType) {
+                  <div>
+                    <a [routerLink]="['/user-type', user1.userType.id, 'view']">{{ user1.userType.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (user1.company) {
+                  <div>
+                    <a [routerLink]="['/company', user1.company.id, 'view']">{{ user1.company.id }}</a>
+                  </div>
+                }
+              </td>
               <td class="text-end">
                 <div class="btn-group">
                   <a [routerLink]="['/user-1', user1.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

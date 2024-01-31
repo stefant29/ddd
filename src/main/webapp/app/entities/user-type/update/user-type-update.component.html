@@ -19,16 +19,6 @@
           <label class="form-label" jhiTranslate="dddApp.userType.type" for="field_type">Type</label>
           <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" jhiTranslate="dddApp.userType.user1" for="field_user1">User 1</label>
-          <select class="form-control" id="field_user1" data-cy="user1" name="user1" formControlName="user1" [compareWith]="compareUser1">
-            <option [ngValue]="null"></option>
-            @for (user1Option of user1sSharedCollection; track $index) {
-              <option [ngValue]="user1Option">{{ user1Option.id }}</option>
-            }
-          </select>
-        </div>
       </div>
 
       <div>

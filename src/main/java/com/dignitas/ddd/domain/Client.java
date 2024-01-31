@@ -1,5 +1,6 @@
 package com.dignitas.ddd.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import org.hibernate.annotations.Cache;
@@ -23,6 +24,10 @@ public class Client implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "users", "clients" }, allowSetters = true)
+    private Company company;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -50,6 +55,19 @@ public class Client implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Company getCompany() {
+        return this.company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Client company(Company company) {
+        this.setCompany(company);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

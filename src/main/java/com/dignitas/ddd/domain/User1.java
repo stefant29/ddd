@@ -3,8 +3,6 @@ package com.dignitas.ddd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -33,15 +31,13 @@ public class User1 implements Serializable {
     @Column(name = "cnp")
     private String cnp;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user1")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "user1" }, allowSetters = true)
-    private Set<UserType> types = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "users" }, allowSetters = true)
+    private UserType userType;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user1")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "user1" }, allowSetters = true)
-    private Set<Company> companies = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "users", "clients" }, allowSetters = true)
+    private Company company;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -97,65 +93,29 @@ public class User1 implements Serializable {
         this.cnp = cnp;
     }
 
-    public Set<UserType> getTypes() {
-        return this.types;
+    public UserType getUserType() {
+        return this.userType;
     }
 
-    public void setTypes(Set<UserType> userTypes) {
-        if (this.types != null) {
-            this.types.forEach(i -> i.setUser1(null));
-        }
-        if (userTypes != null) {
-            userTypes.forEach(i -> i.setUser1(this));
-        }
-        this.types = userTypes;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
-    public User1 types(Set<UserType> userTypes) {
-        this.setTypes(userTypes);
+    public User1 userType(UserType userType) {
+        this.setUserType(userType);
         return this;
     }
 
-    public User1 addType(UserType userType) {
-        this.types.add(userType);
-        userType.setUser1(this);
-        return this;
+    public Company getCompany() {
+        return this.company;
     }
 
-    public User1 removeType(UserType userType) {
-        this.types.remove(userType);
-        userType.setUser1(null);
-        return this;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Set<Company> getCompanies() {
-        return this.companies;
-    }
-
-    public void setCompanies(Set<Company> companies) {
-        if (this.companies != null) {
-            this.companies.forEach(i -> i.setUser1(null));
-        }
-        if (companies != null) {
-            companies.forEach(i -> i.setUser1(this));
-        }
-        this.companies = companies;
-    }
-
-    public User1 companies(Set<Company> companies) {
-        this.setCompanies(companies);
-        return this;
-    }
-
-    public User1 addCompany(Company company) {
-        this.companies.add(company);
-        company.setUser1(this);
-        return this;
-    }
-
-    public User1 removeCompany(Company company) {
-        this.companies.remove(company);
-        company.setUser1(null);
+    public User1 company(Company company) {
+        this.setCompany(company);
         return this;
     }
 
