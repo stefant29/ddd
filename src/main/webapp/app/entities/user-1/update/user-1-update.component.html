@@ -29,6 +29,23 @@
           <label class="form-label" jhiTranslate="dddApp.user1.cnp" for="field_cnp">Cnp</label>
           <input type="text" class="form-control" name="cnp" id="field_cnp" data-cy="cnp" formControlName="cnp" />
         </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="dddApp.user1.company" for="field_company">Company</label>
+          <select
+            class="form-control"
+            id="field_company"
+            data-cy="company"
+            name="company"
+            formControlName="company"
+            [compareWith]="compareCompany"
+          >
+            <option [ngValue]="null"></option>
+            @for (companyOption of companiesSharedCollection; track $index) {
+              <option [ngValue]="companyOption">{{ companyOption.id }}</option>
+            }
+          </select>
+        </div>
       </div>
 
       <div>

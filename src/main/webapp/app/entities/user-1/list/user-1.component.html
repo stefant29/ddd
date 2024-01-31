@@ -63,6 +63,12 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="company.id">
+              <div class="d-flex">
+                <span jhiTranslate="dddApp.user1.company">Company</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -75,6 +81,13 @@
               <td>{{ user1.nume }}</td>
               <td>{{ user1.prenume }}</td>
               <td>{{ user1.cnp }}</td>
+              <td>
+                @if (user1.company) {
+                  <div>
+                    <a [routerLink]="['/company', user1.company.id, 'view']">{{ user1.company.id }}</a>
+                  </div>
+                }
+              </td>
               <td class="text-end">
                 <div class="btn-group">
                   <a [routerLink]="['/user-1', user1.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
